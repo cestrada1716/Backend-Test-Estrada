@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-12 text-center mt-3">
+             <h5>Menu name: {{ menus.name }}</h5>
+              <h5>Menu date: {{ menus.menu_date }}</h5>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-12 com-sm-12 mt-5">
+            <h3>Menu options:</h3>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 com-sm-12 mt-5">
+            {% for option in menus.options.all|dictsort:"name" %}
+             <ul>
+                 <li>{{option.name}}: {{option.description}}  ->  ${{option.price}}</li>
+             </ul>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+           <p>
+               For order an option plaese click here
+           </p>
+            <button class="btn btn-primary" onclick="window.location.href='{%url 'order_view' %}'">Order</button>
+
+            <p>
+                you need to be logged in to order, if you are not logged in you can do it by clicking here:
+            </p>
+            <button class="btn btn-primary" onclick="window.location.href='{%url 'login_view' %}'">Login</button>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Get Options{% endblock %}
+
+{% block content %}
+    <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-8">
+                <form id="login-form" method="post">
+                {% csrf_token %}
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 com-sm-12 mt-5">
+                            <h3>Options</h3>
+                            <br>
+                            {% for option in response|dictsort:"name"%}
+                                <ul>
+                                   <li>Option ID: {{option.id}}</li>
+                                    <li>Name: {{option.name}}</li>
+                                    <li>Description: {{option.description}}</li>
+                                    <li>Price: {{option.price}}</li>
+                                </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </form>
+
+        </div>
+    </div>
+{% endblock content %}

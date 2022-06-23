@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Create Order{% endblock %}
+
+{% block content %}
+    <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-8">
+            {% if menus %}
+                <form id="login-form" method="post"
+                 >
+                {% csrf_token %}
+                <div class="row justify-content-center">
+                    <div class="col-md-12 com-sm-12 mt-5">
+                        <h3>Create order</h3>
+                        <h5>select one option from the menu day: </h5>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <input required style="display: none" type="text" value="{{menus.id}}" name="menu" class="form-control">
+                    {% for option in menus.options.all|dictsort:"name" %}
+                     <ul>
+                         <label>
+                             <input type="radio" id="{{option.id}}" name="option" value="{{option.id}}" required> {{option.name}}: {{option.description}}
+                         </label>
+                         <br>
+                     </ul>
+                    {% endfor %}
+                    <label>
+                        <input required type="number" name="quantity" class="form-control" placeholder="Quantity">
+                    </label>
+                    <label>
+                        <textarea name="commentary" class="form-control" placeholder="Comment (optional)"></textarea>
+                    </label>
+                </div>
+
+                <input type="submit" value="Create order"
+                       class="btn btn-primary pull-right" />
+                <input type="hidden" name="next" value="{{ next }}" />
+
+            </form>
+            {% elif response %}
+            <div class="row justify-content-center">
+                    <div class="col-md-12 com-sm-12 mt-5">
+                        <h3>Order created succesfully with the id: {{response.id}}</h3>
+                        <br>
+                        <button class="btn btn-primary" onclick="window.location.href='{%url 'menu_view' request.session.menu_id %}'">Menu Day!</button>
+
+                    </div>
+                </div>
+
+            {% else %}
+           <div class="col-md-12 com-sm-12 mt-5">
+                        <h3>No menu found</h3>
+                        <br>
+                    </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

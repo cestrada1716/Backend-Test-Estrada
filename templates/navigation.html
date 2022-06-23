@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-dark indigo">
+  <a class="navbar-brand" href="">Nora Food Cornershop</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      {% if request.session.user_type == 'admin' %}
+        <div class="navbar">
+          <div class="dropdown">
+            <button class="dropbtn">Dashboard
+            <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+            <a href="{% url 'order_dashboard'%}">Orders</a>
+            <a href="{% url 'options_dashboard' %}">Options</a>
+            <a href="{% url 'menu_dashboard'%}">Menu</a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      {% if request.session.menu_id %}
+      <li class="nav-item navbar">
+          <a class="nav-link" href="{% url 'menu_view' request.session.menu_id %}">Menu</a>
+      </li>
+      {% endif %}
+
+    </ul>
+    <ul class="navbar-nav">
+      {% if request.session.user_type %}
+      <p style="color: aliceblue">
+         logged in as {{ request.session.user_type }}
+      </p>
+      {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login_view' %}">Login</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    box-shadow: none;
+}
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>

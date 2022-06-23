@@ -1,0 +1,383 @@
+swagger: '2.0'
+info:
+  title: Cornershop API
+  description: Cornershop API documentation
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: cestrada1716@gmail.com
+  license:
+    name: BSD License
+  version: v1
+host: 127.0.0.1:8000
+schemes:
+  - http
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+  - Basic: []
+paths:
+  /cornershop_food/api/v1/login_view:
+    get:
+      operationId: cornershop_food_api_v1_login_view_list
+      description: This class handles the render of a login page.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - cornershop_food
+    post:
+      operationId: cornershop_food_api_v1_login_view_create
+      description: This class handles the render of a login page.
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - cornershop_food
+    parameters: []
+  /cornershop_food/api/v1/menu:
+    get:
+      operationId: cornershop_food_api_v1_menu_list
+      description: |-
+        This class handles the creation of a new menu and
+        retrive all menus in the system.
+      parameters: []
+      responses:
+        '200':
+          description: Created
+          schema:
+            $ref: '#/definitions/MenuObject'
+        '403':
+          description: BadRequest
+          schema:
+            $ref: '#/definitions/forbiden'
+      tags:
+        - cornershop_food
+    post:
+      operationId: cornershop_food_api_v1_menu_create
+      description: |-
+        This class handles the creation of a new menu and
+        retrive all menus in the system.
+      parameters: []
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/MenuObject'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiBadResponse'
+
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/forbiden'
+      tags:
+        - cornershop_food
+    parameters: []
+  /cornershop_food/api/v1/menu/view/{id}:
+    get:
+      operationId: cornershop_food_api_v1_menu_view_read
+      description: This class handles the render of a menu page.
+      parameters: []
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/MenuObject'
+        '403':
+          description: BadRequest
+          schema:
+            $ref: '#/definitions/forbiden'
+      tags:
+        - cornershop_food
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /cornershop_food/api/v1/menu/{id}:
+    put:
+      operationId: cornershop_food_api_v1_menu_update
+      description: This class handles the update of a menu.
+      parameters: []
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/MenuObject'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiBadResponse'
+        '403':
+          description: BadRequest
+          schema:
+            $ref: '#/definitions/forbiden'
+      tags:
+        - cornershop_food
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /cornershop_food/api/v1/menu_dashboard:
+    get:
+      operationId: cornershop_food_api_v1_menu_dashboard_list
+      description: This class handles the render of get menu page.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - cornershop_food
+    parameters: []
+  /cornershop_food/api/v1/option:
+    get:
+      operationId: cornershop_food_api_v1_option_list
+      description: |-
+        This class handles the creation of a new option and
+        retrive all options in the system.
+      parameters: []
+      responses:
+        '200':
+          description: Created
+          schema:
+            $ref: '#/definitions/OptionObject'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/forbiden'
+      tags:
+        - cornershop_food
+    post:
+      operationId: cornershop_food_api_v1_option_create
+      description: |-
+        This class handles the creation of a new option and
+        retrive all options in the system.
+      parameters: []
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/OptionObject'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiBadResponse'
+
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/forbiden'
+      tags:
+        - cornershop_food
+    parameters: []
+  /cornershop_food/api/v1/option/{id}:
+    put:
+      operationId: cornershop_food_api_v1_option_update
+      description: This class handles the update of an option.
+      parameters: []
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/OptionObject'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiBadResponse'
+        '403':
+          description: BadRequest
+          schema:
+            $ref: '#/definitions/forbiden'
+      tags:
+        - cornershop_food
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /cornershop_food/api/v1/options:
+    get:
+      operationId: cornershop_food_api_v1_options_list
+      description: This class handles the render of get options page.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - cornershop_food
+    parameters: []
+  /cornershop_food/api/v1/order:
+    get:
+      operationId: cornershop_food_api_v1_order_list
+      description: |-
+        This class handles the creation of a new order and
+        retrive all orders in the system.
+      parameters: []
+      responses:
+        '200':
+          description: Created
+          schema:
+            $ref: '#/definitions/OrderObject'
+        '403':
+          description: BadRequest
+          schema:
+            $ref: '#/definitions/forbiden'
+      tags:
+        - cornershop_food
+    post:
+      operationId: cornershop_food_api_v1_order_create
+      description: |-
+        This class handles the creation of a new order and
+        retrive all orders in the system.
+      parameters: []
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/OrderObject'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiBadResponse'
+
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/forbiden'
+      tags:
+        - cornershop_food
+    parameters: []
+  /cornershop_food/api/v1/order_view:
+    get:
+      operationId: cornershop_food_api_v1_order_view_list
+      description: This class handles the render of get orders page.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - cornershop_food
+    post:
+      operationId: cornershop_food_api_v1_order_view_create
+      description: This class handles the render of get orders page.
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - cornershop_food
+    parameters: []
+  /cornershop_food/api/v1/orders_dashboard:
+    get:
+      operationId: cornershop_food_api_v1_orders_dashboard_list
+      description: This class handles the render of get orders page.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - cornershop_food
+    parameters: []
+  /cornershop_food/api/v1/users:
+    post:
+      operationId: cornershop_food_api_v1_users_create
+      description: This class handles the creation of a new user and
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - cornershop_food
+    parameters: []
+  /healthz:
+    get:
+      operationId: healthz_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - healthz
+    parameters: []
+
+definitions:
+  MenuObject:
+    type: object
+    properties:
+      id:
+        type: string
+        readOnly: true
+      name:
+        type: string
+        readOnly: true
+      menu_date:
+        type: string
+        readOnly: true
+      options:
+        type: array
+        items:
+          type: string
+
+  OptionObject:
+    type: object
+    properties:
+      id:
+        type: string
+        readOnly: true
+      name:
+        type: string
+        readOnly: true
+      price:
+        type: string
+        readOnly: true
+      description:
+        type: string
+
+
+
+  OrderObject:
+    type: object
+    properties:
+      id:
+        type: string
+        readOnly: true
+      menu:
+        type: string
+        readOnly: true
+      create_at:
+        type: string
+        readOnly: true
+      option:
+        type: string
+      commentary:
+        type: string
+      quantity:
+        type: integer
+
+  forbiden:
+    type: object
+    properties:
+      detail:
+        type: string
+
+  ApiBadResponse:
+    type: object
+    properties:
+      errors:
+        uniqueItems: false
+        type: array
+        items:
+          type: string
+        readOnly: true

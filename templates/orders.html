@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Get Orders{% endblock %}
+
+{% block content %}
+    <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-8">
+                <form id="login-form" method="post">
+                {% csrf_token %}
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 com-sm-12 mt-5">
+                            <h3>Orders</h3>
+                            <br>
+                            {% for order in response|dictsort:"created_at"%}
+                                <ul>
+                                   <li>Order ID: {{order.id}}</li>
+                                    <li>Created at: {{order.created_at}}</li>
+                                    <li>Option: {{order.option}}</li>
+                                    <li>Commentary: {{order.commentary}}</li>
+                                    <li>Quantity: {{order.quantity}}</li>
+                                </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </form>
+
+        </div>
+    </div>
+{% endblock content %}

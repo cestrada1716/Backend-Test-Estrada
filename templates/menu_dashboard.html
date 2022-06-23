@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Get Orders{% endblock %}
+
+{% block content %}
+    <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-8">
+                <form id="login-form" method="post">
+                {% csrf_token %}
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 com-sm-12 mt-5">
+                            <h3>Menus</h3>
+                            <br>
+                            {% for menu in response|dictsort:"menu_date"%}
+                                <ul>
+                                   <li>Menu ID: {{menu.id}}</li>
+                                    <li>Name: {{menu.name}}</li>
+                                    <li>Options:
+                                        {{menu.options}}
+                                        {% for option in menu.options.all|dictsort:"name" %}
+                                            {{option.name}}
+                                        {% endfor %}
+                                    </li>
+                                    <li>Menu date: {{menu.menu_date}}</li>
+                                </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </form>
+
+        </div>
+    </div>
+{% endblock content %}
